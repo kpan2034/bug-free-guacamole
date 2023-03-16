@@ -206,9 +206,10 @@ func main() {
 	// Wait for output collector to return
 	wg.Wait()
 
+	// First compress the output chunks further
 	// Print data in order
-	for _, v := range result {
-		os.Stdout.Write(*v)
+	for i := 0; i < id; i++ {
+		os.Stdout.Write(*result[i])
 	}
 
 	// Close open files
