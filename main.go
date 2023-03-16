@@ -121,13 +121,11 @@ const MAX_CHUNK_SIZE = 4096
 
 func main() {
 
-	// j := flag.Int("j", 1, "number of goroutines to be used.")
+	j := flag.Int("j", 1, "number of goroutines to be used.")
 	flag.Parse()
 
-	// fmt.Printf("j:%d\n", *j)
-
 	// Initialize threadpool
-	pool, err := NewPool(1, 100)
+	pool, err := NewPool(*j, 1024)
 	if err != nil {
 		log.Fatalf("error: %v", err)
 	}
