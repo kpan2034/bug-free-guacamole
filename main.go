@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"os"
 	"sync"
 	"time"
 
@@ -207,9 +208,7 @@ func main() {
 
 	// Print data in order
 	for _, v := range result {
-		for i := 0; i < len(*v); i += 2 {
-			fmt.Printf("%c%c", (*v)[i], (*v)[i+1])
-		}
+		os.Stdout.Write(*v)
 	}
 
 	// Close open files
