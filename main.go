@@ -206,7 +206,18 @@ func main() {
 	// Wait for output collector to return
 	wg.Wait()
 
-	// First compress the output chunks further
+	// First stitch the output chunks further
+	for i := 0; i < id-1; i++ {
+		lastChar := (*result[i])[len(*result[i])-2]
+		lastCount := (*result[i])[len(*result[i])-1]
+		firstChar := (*result[i+1])[0]
+		firstCount := &(*result[i+1])[1]
+		if lastChar == firstChar {
+			*firstCount = *firstCount + lastCount
+		}
+		*result[i] = (*result[i])[:len(*result[i])-2]
+	}
+
 	// Print data in order
 	for i := 0; i < id; i++ {
 		os.Stdout.Write(*result[i])
