@@ -194,6 +194,7 @@ func main() {
 				size:   size,
 				reader: f,
 			}
+			id += 1
 			pool.AddTask(task)
 		}
 	}
